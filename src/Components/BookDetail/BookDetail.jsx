@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { addToStoredReadList, addToStroredWishList } from '../../Utility/addToDb';
 
 const BookDetail = () => {
 
@@ -7,12 +8,19 @@ const BookDetail = () => {
     const id = parseInt(bookId)
     const data = useLoaderData();
 
-    const book = data.find(book => book.bookId === id)
+    const book = data.find(book => book.bookId === id);
+    const { image, bookName, author, category, review, tags, totalPages, publisher, yearOfPublishing, } = book;
 
-    const { image, bookName, author, category, review, tags, totalPages, publisher, yearOfPublishing, } = book
-
+    const handleMarkAsRead = (id) =>{
+        addToStoredReadList(id);
+    };
+    const handleAddToWishList = (id) =>{
+        addToStroredWishList(id);
+    }
     return (
+
         <div className="hero bg-base-200  w-full  shadow-xl mt-5 p-6 border-2 min-h-screen">
+                <h2>Book Details: {bookId}</h2>
             <div className="hero-content flex-col lg:flex-row">
                 <img
                     className='rounded-lg shadow-xl'
@@ -44,8 +52,18 @@ const BookDetail = () => {
                         </ul>
 
                     <div className='flex space-x-4 mt-4'>
-                        <button className="btn btn-outline btn-primary">Read</button>
-                        <button className="btn bg-[#50b1c9] btn-primary">Wishlist</button>
+
+                        <button 
+                        className="btn btn-outline btn-primary"
+                        onClick={() => handleMarkAsRead(bookId)}
+                        >Read
+                        </button>
+
+                        <button 
+                        className="btn bg-[#50b1c9] btn-primary"
+                        onClick={() =>handleAddToWishList(id)}
+                        >Wishlist
+                        </button>
                     </div>
                 </div>
             </div>
