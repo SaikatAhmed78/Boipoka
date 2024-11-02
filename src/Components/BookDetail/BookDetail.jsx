@@ -19,11 +19,11 @@ const BookDetail = () => {
     }
     return (
 
-        <div className="hero bg-base-200  w-full  shadow-xl mt-5 p-6 border-2 min-h-screen">
+        <div className="hero bg-base-200 w-full h-36 shadow-xl mt-5 p-6 border-2 min-h-screen">
                 <h2>Book Details: {bookId}</h2>
             <div className="hero-content flex-col lg:flex-row">
                 <img
-                    className='rounded-lg shadow-xl'
+                    className='rounded-lg shadow-xl w-32 h-32'
                     src={image} />
 
                 <div className='ml-5'>

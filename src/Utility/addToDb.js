@@ -1,4 +1,5 @@
-import { json } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 const getStoredReadList = () => {
     const storedListStr = localStorage.getItem('read-list');
@@ -16,12 +17,13 @@ const addToStoredReadList = (id) => {
     const storedList = getStoredReadList();
 
     if (storedList.includes(id)) {
-        alert('Already Exists In The Read List')
+        toast('Already Exists In The Read List')
     }
     else {
         storedList.push(id);
         const storedListStr = JSON.stringify(storedList);
         localStorage.setItem('read-list', storedListStr);
+        toast('This Book is Added to Read List')
     }
 };
 
@@ -50,4 +52,4 @@ const addToStroredWishList = (id) =>{
    }
 };
 
-export {addToStoredReadList, addToStroredWishList}
+export {addToStoredReadList, addToStroredWishList, getStoredReadList}
